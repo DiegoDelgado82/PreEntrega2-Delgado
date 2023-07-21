@@ -141,6 +141,7 @@ function cargarFila()
     document.getElementById(serv).value=""
     document.getElementById("precio").value="";
     document.getElementById("cantidad").value="";
+    calcularMontoTotal()
 }
 
 function borrarFila(boton) {
@@ -148,4 +149,6 @@ function borrarFila(boton) {
     let tabla = fila.parentNode;
     tabla.removeChild(fila);
   }
+  
+
   
