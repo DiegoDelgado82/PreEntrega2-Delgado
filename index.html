@@ -28,32 +28,32 @@
       <section class="container bg-info py-2">
         <div class="row">
           <div class="row col-12 justify-content-center align-items-center">
-            <button type="button" id="btnPintura" class="col-3 btn btn-primary mb-1 mx-1" onclick="seleccionServicio('Pintura')">
+            <button type="button" id="btnPintura" class="col-3 btn btn-primary mb-1 mx-1 colorBtn" onclick="seleccionServicio('Pintura')">
               Pintura
             </button>
-            <button type="button" id="btnAlbañil" class="col-3 btn btn-primary mb-1 mx-1" onclick="seleccionServicio('Albañil')">
+            <button type="button" id="btnAlbañil" class="col-3 btn btn-primary mb-1 mx-1 colorBtn" onclick="seleccionServicio('Albañil')">
               Albañilería
             </button>
-            <button type="button" id="btnElectricidad" class="col-3 btn btn-primary mb-1 mx-1" onclick="seleccionServicio('Electricidad')">
+            <button type="button" id="btnElectricidad" class="col-3 btn btn-primary mb-1 mx-1 colorBtn" onclick="seleccionServicio('Electricidad')">
               Electricidad
             </button>
-            <button type="button" id="btnPlomeria" class="col-3 btn btn-primary mb-1 mx-1" onclick="seleccionServicio('Plomeria')">
+            <button type="button" id="btnPlomeria" class="col-3 btn btn-primary mb-1 mx-1 colorBtn" onclick="seleccionServicio('Plomeria')">
               Plomería
             </button>
-            <button type="button" id="btnHerreria" class="col-3 btn btn-primary mb-1 mx-1" onclick="seleccionServicio('Herreria')">
+            <button type="button" id="btnHerreria" class="col-3 btn btn-primary mb-1 mx-1 colorBtn" onclick="seleccionServicio('Herreria')">
               Herrería
             </button>
-            <button type="button" id="btnOtros" class="col-3 btn btn-primary mb-1 mx-1" onclick="seleccionServicio('Otros')">
+            <button type="button" id="btnOtros" class="col-3 btn btn-primary mb-1 mx-1 colorBtn" onclick="seleccionServicio('Otros')">
               Otros
             </button>
           </div>
         </div>
       </section>
 
-      <section class="container bg-secondary py-2 ">
+      <section class="container bg-secondary py-1 ">
         <div class="row">
 
-          <div class="col-4  text-white">
+          <div class="col-5 px-1  text-white">
             <div class="form-group">
               <label for="nombreServicio">Tarea</label>
               <input
@@ -111,15 +111,15 @@
           </div>
           <div class="col-2 px-1 text-white">
             <div class="form-group">
-              <label for="cantidad">Cantidad</label>
+              <label for="cantidad">Cant.</label>
               <input type="number" class="form-control" id="cantidad"  />
             </div>
           </div>
           
-          <div class="col-3">
+          <div class="col-2 px-1">
             <div class="form-group">
                 <button type="button" class="btn btn-success btn-block mt-4" onclick="cargarFila()">
-                     <i class="fa fa-plus-square"></i>  Agregar 
+                      +
                     
                   </button>
             </div>

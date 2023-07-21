@@ -1,13 +1,8 @@
 function seleccionServicio(servicio)
 {
-    document.getElemgitentById("bntPintura").style.backgroundColor="ligthblue";
-    document.getElementById("Albañil").style.display="none";
-    document.getElementById("Electricidad").style.display="none";
-    document.getElementById("Plomeria").style.display="none";
-    document.getElementById("Herreria").style.display="none";
-    document.getElementById("Otros").style.display="none";
+    
 
-    document.getElementById("btn"+servicio).style.backgroundColor="green"
+    
     switch (servicio) {
         case "Pintura":
             document.getElementById("Ninguno").style.display="none";
