@@ -2,7 +2,7 @@ function seleccionServicio(servicio)
 {
     
 
-    
+/*En este Switch  */    
     switch (servicio) {
         case "Pintura":
             document.getElementById("Ninguno").style.display="none";
@@ -83,6 +83,8 @@ precioTotal.value=precio*cant
 
 function cargarFila()
 {
+
+    /*Por medio del if anidado verifico cual es el combo de servicio activo*/
     let serv;
     if(document.getElementById("Pintura").style.display!="none")
     {
@@ -151,4 +153,3 @@ function borrarFila(boton) {
   }
   
 
-  
