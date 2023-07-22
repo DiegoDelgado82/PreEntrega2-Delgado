@@ -5,7 +5,6 @@ Más allá de la parte estética, lo que busco en esta entrega es mostrar que po
 realizar una primera aproximación de la funcionalidad, dejando de lado (ya que todavia no lo vimos en clase) la performance y haciendo
 hincapié solamente en la funcionalidad que de manera eficaz por medio de estos conceptos se pueda hacer entrega de un MPV.
 
-
 -->
 <!DOCTYPE html>
 <html lang="es">
@@ -274,24 +273,7 @@ hincapié solamente en la funcionalidad que de manera eficaz por medio de estos 
     
 
     <script>
-      function generarPDF() {
-        document.getElementById("botones").style.display = "none";
-        document.getElementById("tareas").style.display = "none";
-        eliminarColumna();
-        const element = document.getElementById("main-print");
-
-        // Opciones de configuración para el PDF (puedes ajustar según tus necesidades)
-        const options = {
-          margin: 10,
-          filename: "archivo.pdf",
-          image: { type: "jpeg", quality: 0.98 },
-          html2canvas: { scale: 2 },
-          jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
-        };
-
-        // Genera el PDF
-        html2pdf().from(element).set(options).save();
-      }
+      
     </script>
   </body>
 </html>

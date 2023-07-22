@@ -179,3 +179,23 @@ function calcularMontoTotal() {
   document.getElementById("total").textContent =
     "Total Presupuesto: $" + montoTotal;
 }
+
+
+function generarPDF() {
+    document.getElementById("botones").style.display = "none";
+    document.getElementById("tareas").style.display = "none";
+    eliminarColumna();
+    const element = document.getElementById("main-print");
+
+   //A futuro modificar el nombre del archivo para personalizarlo
+    const options = {
+      margin: 10,
+      filename: "archivo.pdf",
+      image: { type: "jpeg", quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+    };
+
+    
+    html2pdf().from(element).set(options).save();
+  }
