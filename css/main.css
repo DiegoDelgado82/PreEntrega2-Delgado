@@ -1,39 +1,44 @@
 .footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #f8f9fa; /* Color de fondo del footer */
-    padding: 0px 0; /* Espacio de relleno superior e inferior del footer */
-    text-align: center;
-  }
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #f8f9fa; /* Color de fondo del footer */
+  padding: 0px 0; /* Espacio de relleno superior e inferior del footer */
+  text-align: center;
+}
 
-  
-  .colorBtn:hover {
-    background-color: #198754;
-    border-color: #198754;
-  }
+.colorBtn:hover {
+  background-color: #198754;
+  border-color: #198754;
+}
 
+.imgLogo {
+  width: 150px;
+}
 
-  .imgLogo
-  {
-width: 15%;
-
-  }
-
- /* Estilos para la tabla */
+/* Estilos para la tabla */
 .table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .table th, .table td {
-    border: 1px solid #ccc;
-    padding: 8px;
-    text-align: center;
-  }
-  
-  .table th {
-    background-color: #f2f2f2;
-  }
-  
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+.table th {
+  background-color: #f2f2f2;
+}
+
+.btnTarea{
+  font-size: 0.8rem !important;
+}
+
+.btnPresupuesto
+{
+  font-size: 1.0rem !important;
+}
