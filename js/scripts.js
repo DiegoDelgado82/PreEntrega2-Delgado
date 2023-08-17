@@ -219,19 +219,14 @@ function borrarFila(boton, idx) {
 
 function eliminarColumna() {
   const tabla = document.getElementById("cuerpoTabla");
-  const filas = tabla.getElementsByTagName("tr");
+  const filas = tabla.rows.length;
 
-  /*Recorro la tabla para eliminar la ultima celda de cada fila  */
-  for (let i = 0; i < filas.length; i++) {
-    const celdas = filas[i].getElementsByTagName("td");
-    if (celdas.length > 0) {
-      filas[i].deleteCell(-1);
+  if (filas > 0) {
+    for (let i = 0; i < filas; i++) {
+        tabla.rows[i].deleteCell(-1);
     }
-  }
+}
 
-  /*Le borro el nombre del encabezado de la ultima celda*/
-  const encabezado = tabla.getElementsByTagName("th")[4];
-  encabezado.textContent = "";
 }
 
 
@@ -256,6 +251,7 @@ function calcularMontoTotalPresupuesto() {
 function generarPDF() {
   document.getElementById("botones").style.display = "none";
   document.getElementById("tareas").style.display = "none";
+  document.getElementById("hTotalPresupuesto").textContent=document.getElementById("total").textContent
   eliminarColumna();
   const element = document.getElementById("main-print");
 
