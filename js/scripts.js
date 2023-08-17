@@ -28,7 +28,7 @@ class Servicio
     }
     crearMensaje()
     {
-      this.mensaje= `mensaje de whatsapp al numero:${this.telefono}`
+      this.mensaje= `mensaje de whatsapp al número:${this.telefono}`
     }
   }
 
@@ -107,7 +107,7 @@ function seleccionServicio(servicio) {
 }
 
 /*Calculo el precio total de la tarea multiplicando el precio por la acantidad */
-function precioTotal() {
+function calcularPrecioTotal() {
   let precio = document.getElementById("precio").value;
 
   let cant = document.getElementById("cantidad").value;
