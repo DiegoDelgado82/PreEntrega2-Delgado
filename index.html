@@ -32,7 +32,7 @@ hincapié solamente en la funcionalidad que de manera eficaz por medio de estos 
       referrerpolicy="no-referrer"
     ></script>
   </head>
-  <body>
+  <body onload="cargarCliente()">
     <main id="main-print">
       <section class="container-fluid">
         <div class="row col-12 mb-3 justify-content-center align-items-center">
@@ -227,8 +227,15 @@ hincapié solamente en la funcionalidad que de manera eficaz por medio de estos 
         </div>
         
       </section>
+      <section class="mt-2 px-0" >
+        <div class="row col-12 justify-content-center align-items-center">
+          <h4 class="text-center" id="hCliente"></h4>
+        </div>
+       
+      </section>
 
-      <section class="mb-1 px-0" id="aImprimir2">
+
+      <section class="my-1 px-0" id="aImprimir2">
         <div class="container px-0">
           <table class="table" id="cuerpoTabla">
             <thead>

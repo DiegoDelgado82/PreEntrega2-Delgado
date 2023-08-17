@@ -29,10 +29,31 @@ class Servicio
     crearMensaje()
     {
       this.mensaje= `mensaje de whatsapp al número:${this.telefono}`
+      
     }
   }
 
 
+  function cargarCliente()
+  {
+    
+    let nombre= prompt("Ingrese el nombre del cliente al cual va dirigido el presupuesto");
+    let telefono=prompt("Ingrese teléfono del cliente")
+    if (nombre!="" && telefono!="")
+    {
+      let clientePresupuesto= new Cliente(nombre, telefono)
+      clientePresupuesto.crearMensaje()
+      alert(`El presupuesto va dirigido a ${nombre}, y el teléfono es ${telefono}`)
+      document.getElementById("hCliente").textContent=`Presupuesto dirigido a ${nombre}, teléfono ${telefono}`
+    }
+    else
+    {
+      alert(`No se cargaron los datos correctamente, reintente`)
+      cargarCliente()
+    }
+    
+
+  }
 
 
 
@@ -151,6 +172,8 @@ function cargarFila() {
     let servicio = document.getElementById(serv).value;
     let precio = document.getElementById("precio").value;
     let cant = document.getElementById("cantidad").value;
+    crearServicio(servicio, precio, cant);
+    let indice= listaServicios.length
     document.getElementById("cuerpoTabla").innerHTML =
       document.getElementById("cuerpoTabla").innerHTML +
       "<tr><td>" +
@@ -161,13 +184,13 @@ function cargarFila() {
       cant +
       "</td><td>" +
       precio * cant +
-      "</td><td><button type='button' class='btn btn-danger' onclick='borrarFila(this)'>" +
+      "</td><td><button type='button' class='btn btn-danger' onclick='borrarFila(this,"+ indice.toString()+")'>" +
       "<i class='fa fa-trash'></i></button></td>";
     document.getElementById(serv).value = "";
     document.getElementById("precio").value = "";
     document.getElementById("cantidad").value = "";
 
-    crearServicio(servicio, precio, cant);
+    
 
     //calcularMontoTotal();
   } 
@@ -180,12 +203,18 @@ function cargarFila() {
 }
 
 /*Permite borrar una fila de la tabla de tareas cargada */
-function borrarFila(boton) {
+function borrarFila(boton, idx) {
+  
   let fila = boton.parentNode.parentNode;
+  
   let tabla = fila.parentNode;
   tabla.removeChild(fila);
   //llamo a la función para que re-calcule nuevamente el total del presupuesto
-  calcularMontoTotal();
+  //calcularMontoTotal();
+  listaServicios[idx-1].precioTotal=0;
+  calcularMontoTotalPresupuesto();
+ 
+
 }
 
 function eliminarColumna() {
