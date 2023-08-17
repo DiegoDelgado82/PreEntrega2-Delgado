@@ -1,3 +1,42 @@
+let listaServicios=[]
+
+
+class Servicio
+  {
+    constructor(tarea, precio,cantidad)
+    {
+      this.tarea=tarea;
+      this.precio=parseInt(precio);
+      this.cantidad=parseInt(cantidad);
+      this.precioTotal=0;
+    }
+    calcularPrecioTotal()
+    {
+      this.precioTotal= this.precio*this.cantidad
+    }
+  }
+
+
+  class Cliente
+  {
+    constructor(nombre,telefono,mensaje)
+    {
+      this.nombre=nombre;
+      this.telefono=telefono;
+      this.mensaje="";
+      
+    }
+    crearMensaje()
+    {
+      this.mensaje= `mensaje de whatsapp al numero:${this.telefono}`
+    }
+  }
+
+
+
+
+
+
 function seleccionServicio(servicio) {
   /*En este Switch selecciono el select que va a aparecer en base al servicio seleccionado en los botones, el cual se pasa como parámetro */
   switch (servicio) {
@@ -77,15 +116,12 @@ function precioTotal() {
 }
 
 function cargarFila() {
+  let price = parseInt(document.getElementById("precio").value);
+  let cantidad = parseInt(document.getElementById("cantidad").value);
+  let servNull = document.getElementById("Ninguno").style.display;
 
-    let price=parseInt(document.getElementById("precio").value);
-    let cantidad=parseInt(document.getElementById("cantidad").value);
-    let servNull= document.getElementById("Ninguno").style.display
-    
   /*verificar si tiene contenido cargado */
-  if (!isNaN(price) && !isNaN(cantidad) && servNull!="") {
-   
-
+  if (!isNaN(price) && !isNaN(cantidad) && servNull != "") {
     /*Por medio del if anidado verifico cual es el combo de servicio activo*/
     let serv;
     if (document.getElementById("Pintura").style.display != "none") {
@@ -130,11 +166,17 @@ function cargarFila() {
     document.getElementById(serv).value = "";
     document.getElementById("precio").value = "";
     document.getElementById("cantidad").value = "";
-    calcularMontoTotal();
 
-  } else alert("Debe cargar un precio o cantidad válido, ingrese nuevamente");
+    crearServicio(servicio, precio, cant);
 
-  
+    //calcularMontoTotal();
+  } 
+   /*Informamos al usuario el dato faltante */
+  else if (isNaN(price))
+    alert("Debe cargar un precio válido, ingrese nuevamente");
+  else if (isNaN(cantidad))
+    alert("Debe cargar una cantidad válida, ingrese nuevamente");
+  else alert("Debe cargar un servicio, ingrese nuevamente");
 }
 
 /*Permite borrar una fila de la tabla de tareas cargada */
@@ -163,39 +205,57 @@ function eliminarColumna() {
   encabezado.textContent = "";
 }
 
-function calcularMontoTotal() {
-  const tabla = document.getElementById("cuerpoTabla");
-  const filas = tabla.getElementsByTagName("tr");
-  let montoTotal = 0;
 
-  /*Recorro la tabla para calcular el monto total del presupuesto  */
-  for (let i = 0; i < filas.length; i++) {
-    const celdas = filas[i].getElementsByTagName("td");
-    if (celdas.length >= 4) {
-      montoTotal = montoTotal + parseInt(celdas[3].innerText);
-    }
+//Calculo en monto total del presupuesto, recorriendo el array de objetos servicios y lo muestra en pantalla
+function calcularMontoTotalPresupuesto() {
+  
+ let montoTotal = 0;
+
+   for(let i=0;i<listaServicios.length;i++)
+  {
+    montoTotal+=listaServicios[i].precioTotal
   }
-
+  
   document.getElementById("total").textContent =
-    "Total Presupuesto: $" + montoTotal;
+    "Total Presupuesto: $"+montoTotal;
+  console.log(listaServicios)
 }
 
 
+
+// funcion que me permite pasar lo que hay en pantalla a PDF
 function generarPDF() {
-    document.getElementById("botones").style.display = "none";
-    document.getElementById("tareas").style.display = "none";
-    eliminarColumna();
-    const element = document.getElementById("main-print");
+  document.getElementById("botones").style.display = "none";
+  document.getElementById("tareas").style.display = "none";
+  eliminarColumna();
+  const element = document.getElementById("main-print");
 
-   //A futuro modificar el nombre del archivo para personalizarlo
-    const options = {
-      margin: 10,
-      filename: "archivo.pdf",
-      image: { type: "jpeg", quality: 0.98 },
-      html2canvas: { scale: 2 },
-      jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
-    };
+  //A futuro modificar el nombre del archivo para personalizarlo
+  const options = {
+    margin: 10,
+    filename: "archivo.pdf",
+    image: { type: "jpeg", quality: 0.98 },
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+  };
 
-    
-    html2pdf().from(element).set(options).save();
-  }
+  html2pdf().from(element).set(options).save();
+}
+
+
+
+//Esta función me crea el array de objetos Servicios,para poder generar el presupuesto de los mismos
+function crearServicio(servicio, precio, cantidad)
+{
+  
+  listaServicios.push(new Servicio(servicio,precio,cantidad))
+  listaServicios[listaServicios.length-1].calcularPrecioTotal()
+  calcularMontoTotalPresupuesto(); 
+  
+}
+
+
+function crearCliente()
+{
+  let cliente= new Cliente(nombre, apellido, telefono)
+}
