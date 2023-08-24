@@ -166,7 +166,6 @@ function eliminarColumna() {
   const tabla = document.getElementById("cuerpoTabla");
   const filas = tabla.rows.length;
 
-   
   if (filas > 0) {
     for (let i = 0; i < filas; i++) {
         tabla.rows[i].deleteCell(-1);
