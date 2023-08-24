@@ -34,98 +34,43 @@ class Servicio
   }
 
 
-  function cargarCliente()
-  {
-    
-    let nombre= prompt("Ingrese el nombre del cliente al cual va dirigido el presupuesto");
-    let telefono=prompt("Ingrese teléfono del cliente")
-    if (nombre!="" && telefono!="")
-    {
-      let clientePresupuesto= new Cliente(nombre, telefono)
-      clientePresupuesto.crearMensaje()
-      alert(`El presupuesto va dirigido a ${nombre}, y el teléfono es ${telefono}`)
-      document.getElementById("hCliente").textContent=`Presupuesto dirigido a ${nombre}, teléfono ${telefono}`
-    }
-    else
-    {
-      alert(`No se cargaron los datos correctamente, reintente`)
-      cargarCliente()
-    }
-    
+//Se realizo la modificación de la función cargar cliente, utilizando funcion flecha y operador ternario AND
 
+
+  const cargarCliente = () => {
+    let nombre = prompt("Ingrese el nombre del cliente al cual va dirigido el presupuesto");
+    let telefono = prompt("Ingrese teléfono del cliente");
+  
+    (nombre !== "" && telefono !== "")
+      ? (
+        clientePresupuesto= new Cliente(nombre, telefono),
+        clientePresupuesto.crearMensaje(),
+        console.log(clientePresupuesto),
+        alert(`El presupuesto va dirigido a ${nombre}, y el teléfono es ${telefono}`),
+        document.getElementById("hCliente").textContent = `Presupuesto dirigido a ${nombre}, teléfono ${telefono}`
+        
+      )
+      : (
+        alert(`No se cargaron los datos correctamente, reintente`),
+        cargarCliente()
+      );
   }
-
-
-
-
-function seleccionServicio(servicio) {
-  /*En este Switch selecciono el select que va a aparecer en base al servicio seleccionado en los botones, el cual se pasa como parámetro */
-  switch (servicio) {
-    case "Pintura":
-      document.getElementById("Ninguno").style.display = "none";
-      document.getElementById("Pintura").style.display = "none";
-      document.getElementById("Albañil").style.display = "none";
-      document.getElementById("Electricidad").style.display = "none";
-      document.getElementById("Plomeria").style.display = "none";
-      document.getElementById("Herreria").style.display = "none";
-      document.getElementById("Otros").style.display = "none";
-
-      document.getElementById("Pintura").style.display = "inline";
-      break;
-
-    case "Albañil":
-      document.getElementById("Ninguno").style.display = "none";
-      document.getElementById("Pintura").style.display = "none";
-      document.getElementById("Albañil").style.display = "none";
-      document.getElementById("Electricidad").style.display = "none";
-      document.getElementById("Plomeria").style.display = "none";
-      document.getElementById("Herreria").style.display = "none";
-      document.getElementById("Otros").style.display = "none";
-      document.getElementById("Albañil").style.display = "inline";
-      break;
-    case "Electricidad":
-      document.getElementById("Ninguno").style.display = "none";
-      document.getElementById("Pintura").style.display = "none";
-      document.getElementById("Albañil").style.display = "none";
-      document.getElementById("Electricidad").style.display = "none";
-      document.getElementById("Plomeria").style.display = "none";
-      document.getElementById("Herreria").style.display = "none";
-      document.getElementById("Otros").style.display = "none";
-      document.getElementById("Electricidad").style.display = "inline";
-      break;
-    case "Plomeria":
-      document.getElementById("Ninguno").style.display = "none";
-      document.getElementById("Pintura").style.display = "none";
-      document.getElementById("Albañil").style.display = "none";
-      document.getElementById("Electricidad").style.display = "none";
-      document.getElementById("Plomeria").style.display = "none";
-      document.getElementById("Herreria").style.display = "none";
-      document.getElementById("Otros").style.display = "none";
-      document.getElementById("Plomeria").style.display = "inline";
-      break;
-    case "Herreria":
-      document.getElementById("Ninguno").style.display = "none";
-      document.getElementById("Pintura").style.display = "none";
-      document.getElementById("Albañil").style.display = "none";
-      document.getElementById("Electricidad").style.display = "none";
-      document.getElementById("Plomeria").style.display = "none";
-      document.getElementById("Herreria").style.display = "none";
-      document.getElementById("Otros").style.display = "none";
-      document.getElementById("Herreria").style.display = "inline";
-      break;
-    case "Otros":
-      document.getElementById("Ninguno").style.display = "none";
-      document.getElementById("Pintura").style.display = "none";
-      document.getElementById("Albañil").style.display = "none";
-      document.getElementById("Electricidad").style.display = "none";
-      document.getElementById("Plomeria").style.display = "none";
-      document.getElementById("Herreria").style.display = "none";
-      document.getElementById("Otros").style.display = "none";
-      document.getElementById("Otros").style.display = "inline";
-    default:
-      break;
+  
+  /*Esta función habilita el servicio seleccionado, mostrando la tarea de cada servicio*/
+  function seleccionServicio(servicio) {
+    const servicios = ["Ninguno", "Pintura", "Albañil", "Electricidad", "Plomeria", "Herreria", "Otros"];
+  
+    servicios.forEach(serv => {
+      document.getElementById(serv).style.display = "none";
+    });
+  
+    document.getElementById(servicio).style.display = "inline";
   }
-}
+  
+
+
+
+
 
 /*Calculo el precio total de la tarea multiplicando el precio por la acantidad */
 function calcularPrecioTotal() {
@@ -221,6 +166,7 @@ function eliminarColumna() {
   const tabla = document.getElementById("cuerpoTabla");
   const filas = tabla.rows.length;
 
+   
   if (filas > 0) {
     for (let i = 0; i < filas; i++) {
         tabla.rows[i].deleteCell(-1);
