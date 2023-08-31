@@ -16,6 +16,13 @@ class Servicio
     }
   }
 
+/* Crear una función que me cargue el listado de objetos servicios en un json para cargarlos en el local storage. De esta forma
+poder ir creando el prespuesto manteniendo los datos en la sesión. Hay que tener en cuenta que cuando se cargue la pagina, permita
+volcar los datos del local storage en el listado de servicios y seguir cargando en base a lo que ya estaba almacenado
+listaServicios=[]
+
+
+*/
 
   class Cliente
   {
