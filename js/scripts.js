@@ -16,13 +16,8 @@ class Servicio
     }
   }
 
-/* Crear una función que me cargue el listado de objetos servicios en un json para cargarlos en el local storage. De esta forma
-poder ir creando el prespuesto manteniendo los datos en la sesión. Hay que tener en cuenta que cuando se cargue la pagina, permita
-volcar los datos del local storage en el listado de servicios y seguir cargando en base a lo que ya estaba almacenado
-listaServicios=[]
 
 
-*/
 
   class Cliente
   {
@@ -41,6 +36,47 @@ listaServicios=[]
   }
 
 
+  
+/* Crear una función que me cargue el cliente y su teléfono en el local storage. De esta forma
+poder ir creando el prespuesto manteniendo los datos del cliente en la sesión. Hay que tener en cuenta que cuando se cargue la pagina, permita
+volcar los datos del local storage en el nombre del cliente comprendido en las etiquetas del DOM
+*/
+function cargarClienteEnLocalStorage(nombre, telefono)
+{
+  localStorage .setItem("cliente", nombre);
+  localStorage .setItem("telefono", telefono);
+  
+
+
+}
+
+/*Esta función me permite verificar si hay un cliente guardado en el local storage, para seguir realizando el presupuesto al mismo, en el caso en que no haya datos en el local storage,
+solicita la carga de los datos del cliente*/
+
+function revisarLocalStorage()
+{
+ 
+  if(localStorage.key(0))
+  {
+    const cliente= localStorage.key(0)
+    const telefono= localStorage.key(1)
+
+    let confirmar = confirm(`El cliente almacenado es ${localStorage.getItem(cliente)}, ¿desea seguir utilizando el mismo?`);
+    if (confirmar) {
+        document.getElementById("hCliente").textContent = `Presupuesto dirigido a ${localStorage.getItem(cliente)}, teléfono ${localStorage.getItem(telefono)}`
+    }
+    else {
+      cargarCliente()
+      
+    }
+  }
+ else
+ {
+  cargarCliente()
+ }
+}
+
+
 //Se realizo la modificación de la función cargar cliente, utilizando funcion flecha y operador ternario AND
 
 
@@ -54,8 +90,8 @@ listaServicios=[]
         clientePresupuesto.crearMensaje(),
         console.log(clientePresupuesto),
         alert(`El presupuesto va dirigido a ${nombre}, y el teléfono es ${telefono}`),
-        document.getElementById("hCliente").textContent = `Presupuesto dirigido a ${nombre}, teléfono ${telefono}`
-        
+        document.getElementById("hCliente").textContent = `Presupuesto dirigido a ${nombre}, teléfono ${telefono}`,
+        cargarClienteEnLocalStorage(nombre, telefono)
       )
       : (
         alert(`No se cargaron los datos correctamente, reintente`),
@@ -92,9 +128,8 @@ function cargarFila() {
   let price = parseInt(document.getElementById("precio").value);
   let cantidad = parseInt(document.getElementById("cantidad").value);
   let servNull = document.getElementById("Ninguno").style.display;
-
   /*verificar si tiene contenido cargado */
-  if (!isNaN(price) && !isNaN(cantidad) && servNull != "") {
+  if (!isNaN(price) && !isNaN(cantidad) && servNull != "inline" && price>0 && cantidad>0) {
     /*Por medio del if anidado verifico cual es el combo de servicio activo*/
     let serv;
     if (document.getElementById("Pintura").style.display != "none") {
@@ -138,7 +173,8 @@ function cargarFila() {
       precio * cant +
       "</td><td><button type='button' class='btn btn-danger' onclick='borrarFila(this,"+ indice.toString()+")'>" +
       "<i class='fa fa-trash'></i></button></td>";
-    document.getElementById(serv).value = "";
+    seleccionServicio("Ninguno")  
+    //document.getElementById(serv).value = "";
     document.getElementById("precio").value = "";
     document.getElementById("cantidad").value = "";
 
@@ -147,9 +183,9 @@ function cargarFila() {
     //calcularMontoTotal();
   } 
    /*Informamos al usuario el dato faltante */
-  else if (isNaN(price))
+  else if (isNaN(price) || price<0)
     alert("Debe cargar un precio válido, ingrese nuevamente");
-  else if (isNaN(cantidad))
+  else if (isNaN(cantidad) || cantidad<0)
     alert("Debe cargar una cantidad válida, ingrese nuevamente");
   else alert("Debe cargar un servicio, ingrese nuevamente");
 }

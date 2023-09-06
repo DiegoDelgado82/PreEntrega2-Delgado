@@ -32,7 +32,7 @@ hincapié solamente en la funcionalidad que de manera eficaz por medio de estos 
       referrerpolicy="no-referrer"
     ></script>
   </head>
-  <body onload="cargarCliente()">
+  <body onload="revisarLocalStorage()">
     <main id="main-print">
       <section class="container-fluid">
         <div class="row col-12 mb-3 justify-content-center align-items-center">
@@ -203,13 +203,13 @@ hincapié solamente en la funcionalidad que de manera eficaz por medio de estos 
           <div class="col-3 px-1 text-white">
             <div class="form-group">
               <label for="precio">Precio</label>
-              <input type="number" class="form-control" id="precio" />
+              <input type="number" min="1" class="form-control" id="precio" />
             </div>
           </div>
           <div class="col-2 px-1 text-white">
             <div class="form-group">
               <label for="cantidad">Cant.</label>
-              <input type="number" class="form-control" id="cantidad" />
+              <input type="number" min="1" class="form-control" id="cantidad" />
             </div>
           </div>
 
